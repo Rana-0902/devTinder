@@ -9,3 +9,27 @@
 - What are dependencies
 - What is the use of "-g" while npm Install
 - Difference between care and tilde ( ^ vs ~)
+
+- Install Postman and make a workplace/collection > test API call
+- Write logic to handle GET,POST , DELETE API Calls and test them on Postman
+- Explore routing and use of ?, + , (), * int he routes
+- Use of regex in routes/a/ , /.*fly$/
+- Reading the query params in theroutes
+- REading the dynamic routes
+
+- Multiple Route Handlers - Play with the code
+- next()
+- next function and errors along with res.send()
+- app.use("/route", rH, [rH2, rH3], rH4, rH5);
+- What is a Middleware? Why do we need it?
+- How express JS basically handles requests behind the scenes
+- Difference app.use and app.all
+- Write a dummy auth middleware for admin
+- Write a dummy auth middleware for all user rotes, except /user/login
+
+S - 2 E - 6:
+- Error Handling using app.use("/", (err, req, res, next) = {});
+- Create a free cluster on MongoDB official website (MongoDB atlas)
+- Install mongoose library 
+- connect your application to the Database (devTinder is DB)
+ 
