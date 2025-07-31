@@ -11,14 +11,12 @@ app.post("/signup", async (req, res) => {
     try {
         const user = new User(userData);
         await user.save();  // return a promise
-        res.send("User created successfully");
+        res.send(user);
         console.log(user);
     } catch (error) {
         res.status(500).send("Error creating user: " + error.message);
     }
     // Create a new user instance of the User model
-    
-
 });
 
 // get user by email
@@ -61,7 +59,6 @@ app.delete("/deleteUser", async (req, res) => {
     try {
         const user = await User.findOneAndDelete(userId); // return a promise
         res.send("User deleted successfully");
-
     }  catch (error) {
         res.status(500).send("Some error occurred :");
     }
@@ -69,12 +66,15 @@ app.delete("/deleteUser", async (req, res) => {
 
 // Update user of the user
 app.patch("/updateUser", async (req, res) => {
-    const userId = req.body._id;
-
+    const userId = req.body.userId;
+    const data = req.body; 
+    
     try {
-        const updateUser = await User.findByIdAndUpdate( userId, { $set : {lastName: 'Sawai Jai Sinh'}}); // return a promise
+        const updateUser = await User.findByIdAndUpdate( {_id: userId}, data ); // return a promise
+        
         console.log("User updated successfully");
-        res.send("User updated successfully");
+        res.send(updateUser);
+
     } catch (error) {
         res.status(500).send("Some error occurred...");
     }
