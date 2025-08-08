@@ -40,7 +40,5 @@ S - 2 E - 6:
 - Create a custom validate function for gender
 - Improve the DB schema - PUT all appropriate validations on each field in Schema
 - Add timestamps to the userSchema
-- DATA timestamps to the userSchema
-- Install validator
-- Explore validator library function and Use validator function for password , email 
-- NEVER TRUST req.body
+- Add API level  validations on Patch request & Signup post API
+- DATA Sanitizing - Add API validation for each field 

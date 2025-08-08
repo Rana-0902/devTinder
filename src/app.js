@@ -13,6 +13,7 @@ app.post("/signup", async (req, res) => {
     try {
         const user = new User(userData);
         await user.save();  // return a promise
+        
         res.send(user);
         console.log(user);
     } catch (error) {
@@ -67,17 +68,21 @@ app.delete("/deleteUser", async (req, res) => {
 });
 
 // Update user of the user
-app.patch("/updateUser", async (req, res) => {
-    const userId = req.body.userId;
+app.patch("/updateUser/:userId", async (req, res) => {
+    const userId = req.params?.userId;
     const data = req.body; 
 
-    // const ALLOWED_UPDATES = ["about", "gender", "age"];
-
-    // const isUpdateAllowed = Object.keys(data).every((k) => 
-    //     ALLOWED_UPDATES.includes(k)
-    // );
-    
     try {
+        const ALLOWED_UPDATES = ["about", "gender", "age"];
+
+        const isUpdateAllowed = Object.keys(data).every((k) => 
+            ALLOWED_UPDATES.includes(k)
+        );
+        
+        if(!isUpdateAllowed) {
+             throw new Error("Update not allowed");
+        }
+
         const updateUser = await User.findByIdAndUpdate( {_id: userId}, data ); // return a promise
 
         console.log("User updated successfully");

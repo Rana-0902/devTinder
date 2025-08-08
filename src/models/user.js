@@ -43,15 +43,13 @@ const userSchema = new mongoose.Schema({
                 throw new Error("Gender data is not valid");
             }
         },
-    },
-    skills: {
-        type: 
-    },
+    }, 
     about: {
         type: String,
-        default: "This is a default of user.",
-    
-}, {
+        default: "This is a default of user.",  
+    },
+},
+ {
     timestamps: true,
 });
 
