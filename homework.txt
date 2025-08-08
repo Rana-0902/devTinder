@@ -42,3 +42,6 @@ S - 2 E - 6:
 - Add timestamps to the userSchema
 - Add API level  validations on Patch request & Signup post API
 - DATA Sanitizing - Add API validation for each field 
+- Install validator
+- Explore validator library functionality and Use validator funcs for password, email and for others
+- NEVER TRUST req.body
