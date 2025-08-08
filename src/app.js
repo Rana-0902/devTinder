@@ -3,6 +3,8 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
+// mongoose.set('runValidators', true);
+
 app.use(express.json()); //middleware to parse JSON bodies
 
 app.post("/signup", async (req, res) => {
@@ -68,15 +70,21 @@ app.delete("/deleteUser", async (req, res) => {
 app.patch("/updateUser", async (req, res) => {
     const userId = req.body.userId;
     const data = req.body; 
+
+    // const ALLOWED_UPDATES = ["about", "gender", "age"];
+
+    // const isUpdateAllowed = Object.keys(data).every((k) => 
+    //     ALLOWED_UPDATES.includes(k)
+    // );
     
     try {
         const updateUser = await User.findByIdAndUpdate( {_id: userId}, data ); // return a promise
-        
+
         console.log("User updated successfully");
         res.send(updateUser);
 
     } catch (error) {
-        res.status(500).send("Some error occurred...");
+        res.status(500).send("UPDATE FAILED: " + error);
     }
     
 });
