@@ -73,25 +73,35 @@ app.patch("/updateUser/:userId", async (req, res) => {
     const data = req.body; 
 
     try {
-        const ALLOWED_UPDATES = ["about", "gender", "age"];
+        const ALLOWED_UPDATES = [
+            "photoURL", 
+            "about", 
+            "gender", 
+            "age", 
+            "skills"
+        ];
 
-        const isUpdateAllowed = Object.keys(data).every((k) => 
-            ALLOWED_UPDATES.includes(k)
-        );
+        const isUpdateAllowed = Object.keys(data).every((k) => ALLOWED_UPDATES.includes(k));
         
-        if(!isUpdateAllowed) {
+        if (!isUpdateAllowed) {
              throw new Error("Update not allowed");
         }
 
-        const updateUser = await User.findByIdAndUpdate( {_id: userId}, data ); // return a promise
+        if (data?.skills.length > 20) {
+            throw new Error("Skills can not be more than 20");
+        }
 
+        const updateUser = await User.findByIdAndUpdate( {_id: userId}, data ,{
+            returnDocument: "before",
+            runValidators: true,
+        }); // return a promise
+        
         console.log("User updated successfully");
         res.send(updateUser);
 
     } catch (error) {
         res.status(500).send("UPDATE FAILED: " + error);
     }
-    
 });
 
 connectDB()
