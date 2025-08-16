@@ -45,3 +45,10 @@ S - 2 E - 6:
 - Install validator
 - Explore validator library functionality and Use validator funcs for password, email and for others
 - NEVER TRUST req.body
+
+
+S-2 Episode - 9:
+- Validate data in Signup API
+- Install bcrypt package
+- Create Passwordhash using bcrypt.hash & save the user is excrupted password
+- Compare passwords and throw errors if small or password is invalid
